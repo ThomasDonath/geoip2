@@ -1,5 +1,6 @@
 # ignore intellij files
 /.idea
+/.vscode
 /*.ipr
 /*.iws
 /*.iml

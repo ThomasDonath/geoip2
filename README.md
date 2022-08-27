@@ -2,6 +2,8 @@
 
 golang implementation of MaxMind's GeoIP2 Precision Services
 
+modified by me: add option to decide wether to use the free or paid version
+
 ## Example
 
 Simple example to use the maxmind realtime api to perform a geo-query.  While City

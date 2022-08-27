@@ -27,6 +27,10 @@ type Api struct {
 	licenseKey string
 }
 
+const paidApiUrl string = "https://geoip.maxmind.com/geoip/v2.1/"
+const freeApiUrl string = "https://geolite.info/geoip/v2.1/"
+var UseFreeApi bool = false
+
 func New(userId, licenseKey string) *Api {
 	api := &Api{
 		userId:     userId,
@@ -54,15 +58,27 @@ func wrap(doFunc func(*http.Request) (*http.Response, error)) func(context.Conte
 }
 
 func (a *Api) Country(ctx context.Context, ipAddress string) (Response, error) {
-	return a.fetch(ctx, "https://geoip.maxmind.com/geoip/v2.1/country/", ipAddress)
+	if UseFreeApi {
+		return a.fetch(ctx, freeApiUrl + "country/", ipAddress)
+	} else {
+		return a.fetch(ctx, paidApiUrl + "country/", ipAddress)
+	}
 }
 
 func (a *Api) City(ctx context.Context, ipAddress string) (Response, error) {
-	return a.fetch(ctx, "https://geoip.maxmind.com/geoip/v2.1/city/", ipAddress)
+	if UseFreeApi {
+		return a.fetch(ctx, freeApiUrl + "city/", ipAddress)
+	} else {
+		return a.fetch(ctx, paidApiUrl + "city/", ipAddress)
+	}
 }
 
 func (a *Api) Insights(ctx context.Context, ipAddress string) (Response, error) {
-	return a.fetch(ctx, "https://geoip.maxmind.com/geoip/v2.1/insights/", ipAddress)
+	if UseFreeApi {
+		return a.fetch(ctx, freeApiUrl + "insights/", ipAddress)
+	} else {
+		return a.fetch(ctx, paidApiUrl + "insights/", ipAddress)
+	}
 }
 
 func (a *Api) fetch(ctx context.Context, prefix, ipAddress string) (Response, error) {
