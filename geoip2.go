@@ -29,6 +29,7 @@ type Api struct {
 
 const paidApiUrl string = "https://geoip.maxmind.com/geoip/v2.1/"
 const freeApiUrl string = "https://geolite.info/geoip/v2.1/"
+// wether to use the free GeoLite or the paid API (default)
 var UseFreeApi bool = false
 
 func New(userId, licenseKey string) *Api {
