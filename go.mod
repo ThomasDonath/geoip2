@@ -1,4 +1,4 @@
-module geoip2
+module github.com/ThomasDonath/geoip2
 
 go 1.19
 
