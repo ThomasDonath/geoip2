@@ -2,7 +2,7 @@
 
 golang implementation of MaxMind's GeoIP2 Precision Services
 
-modified by me: add option to decide wether to use the free or paid version
+modified by me: add option to decide wether to use the free or paid version. To use the free edition set *UseFreeApi=true* before any request.
 
 ## Example
 
